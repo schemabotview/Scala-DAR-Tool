@@ -1,5 +1,7 @@
 package in.schemabot.dar.module3oops
 
+import in.schemabot.dar.module3oops.models.Dataset
+
 object Aggregator:
 
   def count(ds: Dataset): Int = ds.size
