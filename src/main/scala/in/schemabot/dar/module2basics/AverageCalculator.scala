@@ -1,5 +1,6 @@
 /**
  * Basics
+ * Variables, Data Types, Expressions, Functions, Control Flow, Loops, Pattern Matching
  */
 package in.schemabot.dar.module2basics
 
