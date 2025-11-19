@@ -1,5 +1,5 @@
-package in.schemabot.dar.module3oops
-import in.schemabot.dar.module3oops.models.{Dataset, Row}
+package in.schemabot.dar.module4fp
+import in.schemabot.dar.module4fp.models.{Dataset, Row}
 
 import scala.io.Source
 import scala.util.{Failure, Success, Try}
