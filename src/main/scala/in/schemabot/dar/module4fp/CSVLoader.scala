@@ -4,15 +4,24 @@ import in.schemabot.dar.module4fp.models.{Dataset, Row}
 import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
-class CSVLoader(val delimiter:Char) extends AbstractFileLoader(delimiter) {
-  val someVar = 10
-}
+class CSVLoader(val delimiter:Char){
+  def load(resourceName: String): Dataset = {
+    FileUtils.readLines(resourceName) match {
+      case Failure(ex) =>
+        println(s"Error reading file: ${ex.getMessage}")
+        Dataset(Nil)
+      case Success(lines) if lines.isEmpty =>
+        Dataset(Nil)
+      case Success(lines) =>
+        val header = lines.head.split(delimiter).toList
+        val data = lines.tail.map(parseRow(_, header))
+        Dataset(data)
+    }
+  }
 
-class CSVLoader2 extends FileLoaderTriat {
-  override val delimiter: Char = ','
-  val someVar = 10
-}
-
-class CSVLoader3 extends SpecificCSVLoaderTrait {
-  var someVar = 20
+  private def parseRow(line: String, header: List[String]): Row = {
+    val values = line.split(delimiter).toList
+    val mapped = header.zip(values).toMap
+    Row(mapped)
+  }
 }
